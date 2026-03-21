@@ -19,14 +19,14 @@ body {
 /* 3D VIEW TAKES MOST SPACE */
 #viewer {
     flex: 1;
-    background: #0b0f1a;
+    background: #616e93;
 }
 
 /* SIDE PANEL */
 .panel {
     width: 280px;
-    background: #111827;
-    color: white;
+    background: #252628;
+    color: rgb(251, 248, 248);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@ body {
 .panel button {
     padding: 10px;
     border: none;
-    background: #ff6600;
+    background: #3e4f05;
     color: white;
     cursor: pointer;
 }
