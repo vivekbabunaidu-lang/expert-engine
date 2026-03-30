@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="V8 Engine 3D Scrollytelling — Explore the anatomy of a V8 engine interactively. Test your knowledge in the quiz or ask our assistant.">
+  <title>V8 Engine - Scrollytelling</title>
+  <link rel="icon" href="assets/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/viewer.css">
+</head>
+<body class="scrolly-body">
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress-bar"></div>
+
+  <a class="floating-back" href="engines.html">← Back to Dashboard</a>
+  <img src="assets/logo.png" style="position: fixed; top: 20px; right: 20px; width: 60px; z-index: 1000; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+
+  <div class="scrolly-layout">
+    
+    <!-- LEFT: STICKY 3D ENGINE -->
+    <div class="sticky-3d">
+      <div id="viewer" class="canvas-container" data-model="models/v8_engine.glb"></div>
+      
+      <!-- 3D CONTROL BAR -->
+      <div class="viewer-controls">
+        <button id="explode-btn" class="glass-btn">
+          <span class="btn-icon">💥</span> EXPLODED VIEW
+        </button>
+        <button id="rotate-btn" class="glass-btn active">
+          <span class="btn-icon">🔄</span> AUTO-ROTATE
+        </button>
+      </div>
+
+      <!-- DIAGNOSTIC HUD OVERLAY -->
+      <div id="part-hud" class="part-hud is-hidden">
+        <div class="hud-header">
+          <span class="hud-status">DIAGNOSTIC ACTIVE</span>
+          <div class="hud-line"></div>
+        </div>
+        <h3 id="hud-part-name">Engine Component</h3>
+        <p id="hud-part-desc">Analyzing part data from the database...</p>
+        <div class="hud-footer">
+          <span class="hud-hint">Click outside to dismiss</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: SCROLLING STORY CARDS -->
+    <div class="scrolly-content">
+      
+      <!-- Intro Card -->
+      <section class="story-card intro" data-highlight="None">
+        <div class="page-tag" style="color: var(--blue);">GUIDED TOUR</div>
+        <h1 class="title" style="margin-top: 10px;">The Anatomy of a V8</h1>
+        <p class="subtitle" style="font-size: 18px; line-height: 1.6;">
+          Scroll down to visually explore exactly how air, fuel, and fire turn into raw rotational horsepower, from the very top of the engine straight down to the oil pan.
+        </p>
+        
+        <!-- SENSORY UPGRADE: ENGINE DRIVE SYSTEM -->
+        <div class="rev-container" style="margin: 20px 0 40px;">
+          <div style="display: flex; gap: 15px;">
+            <button id="start-btn" class="rev-btn" style="border-color: var(--blue); color: var(--blue);">
+              <span class="rev-icon">⚡</span> START ENGINE
+            </button>
+            <button id="rev-btn" class="rev-btn" disabled>
+              <span class="rev-icon">🔊</span> REV BURST
+            </button>
+          </div>
+          <div class="rev-hint">Initialize ignition to enable throttle control</div>
+        </div>
+
+        <div class="scroll-indicator">
+          <span>Scroll down to dissect</span>
+          <div class="mouse-icon">🖱️</div>
+        </div>
+      </section>
+
+      <!-- 1. Intake Manifold -->
+      <section class="story-card" data-highlight="Intake Manifold">
+        <div class="blueprint-card">
+          <div class="step-num">[ 01 / 12 ] SYS-V8-INT</div>
+          <h2>Intake Manifold</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">The wide, flat cast-aluminum structure at the top of the V-angle.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">Optimizes air velocity and distributes it evenly into the <b>Intake Ports</b>.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Fuel Rail -->
+      <section class="story-card" data-highlight="Fuel Rail + Injectors">
+        <div class="blueprint-card">
+          <div class="step-num">[ 02 / 12 ] SYS-V8-FL</div>
+          <h2>Fuel Rail & Injectors</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">The high-pressure fuel delivery rail sitting just below the intake.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">Supplies a highly pressurized spray of fuel sequentially for <b>Combustion</b>.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Cylinder Head -->
+      <section class="story-card" data-highlight="Cylinder Head">
+        <div class="blueprint-card">
+          <div class="step-num">[ 03 / 12 ] SYS-V8-HD</div>
+          <h2>Cylinder Head</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">The principal structural chunk capping the cylinder bores.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">Intricately houses the Valves, Camshaft, and Spark Plugs for <b>Synchronized Timing</b>.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Camshaft -->
+      <section class="story-card" data-highlight="Camshaft">
+        <div class="blueprint-card">
+          <div class="step-num">[ 04 / 12 ] SYS-V8-CS</div>
+          <h2>Camshaft</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">The high-precision rotating rod with offset mechanical lobes.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">Controls the mechanical rhythm and <b>Valve Actuation</b> timings.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Valves -->
+      <section class="story-card" data-highlight="Valves">
+        <div class="blueprint-card">
+          <div class="step-num">[ 05 / 12 ] SYS-V8-VAL</div>
+          <h2>Engine Valves</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">Individual metallic poppets found inside the cylinder head ports.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">Regulate air inflow and exhaust outflow during the <b>Internal Cycle</b>.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Spark Plugs -->
+      <section class="story-card" data-highlight="Spark Plugs">
+        <div class="blueprint-card">
+          <div class="step-num">[ 06 / 12 ] SYS-V8-IGN</div>
+          <h2>Spark Plugs</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">Individual electrical conductors stems within the head.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">Deliver the high-voltage spark required to <b>Ignite</b> the fuel charge.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Cylinder Block -->
+      <section class="story-card" data-highlight="Cylinder Block">
+        <div class="blueprint-card">
+          <div class="step-num">[ 07 / 12 ] SYS-V8-BLK</div>
+          <h2>Cylinder Block</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">The heavy-duty V-angled central framework of the assembly.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">The primary block containing <b>Cylinder Bores</b> for violent piston sliding.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Pistons -->
+      <section class="story-card" data-highlight="Pistons">
+        <div class="blueprint-card">
+          <div class="step-num">[ 08 / 12 ] SYS-V8-PST</div>
+          <h2>Pistons</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">The precision cylindrical slugs moving inside the block.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">Convert vertical combustion explosions into linear <b>Kinetic Energy</b>.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. Crankshaft -->
+      <section class="story-card" data-highlight="Crankshaft">
+        <div class="blueprint-card">
+          <div class="step-num">[ 09 / 12 ] SYS-V8-CRK</div>
+          <h2>Crankshaft</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">The heavy, long, offset rotating rod running at the block's base.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">Converts vertical piston movement into physical <b>Rotational Motion</b>.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. Timing Belt -->
+      <section class="story-card" data-highlight="Timing Belt / Timing Chain">
+        <div class="blueprint-card">
+          <div class="step-num">[ 10 / 12 ] SYS-V8-TIB</div>
+          <h2>Timing Belt / Chain</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">High-tensile belt or chain wrapping around front-mounted gears.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">Synchronizes Crankshaft and Camshaft rotations for <b>Engine Timing</b>.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11. Oil Pump -->
+      <section class="story-card" data-highlight="Oil Pump">
+        <div class="blueprint-card">
+          <div class="step-num">[ 11 / 12 ] SYS-V8-PMP</div>
+          <h2>Oil Pump</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">High-pressure mechanical pump near the lower crank section.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">Circulates lubricant to prevent <b>Mechanical Friction</b> and heat.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. Oil Pan -->
+      <section class="story-card" data-highlight="Oil Pan / Base Plate">
+        <div class="blueprint-card">
+          <div class="step-num">[ 12 / 12 ] SYS-V8-SUM</div>
+          <h2>Oil Pan / Sump</h2>
+          <div class="spec-grid">
+            <div class="spec-row">
+              <div class="spec-label">Internal Diagnostics</div>
+              <div class="spec-value">Flat, stamped-steel or aluminum reservoir pan at the base.</div>
+            </div>
+            <div class="spec-row">
+              <div class="spec-label">System Function</div>
+              <div class="spec-value">Holds and cools the engine oil when in a <b>Dormant State</b>.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Outro Card -->
+      <section class="story-card outro" data-highlight="None">
+        <div class="blueprint-card">
+          <div class="step-num">TOUR SEQUENCE COMPLETE</div>
+          <h2>System Offline</h2>
+          <p style="margin-bottom: 30px;">You have successfully traced the entire path of air, fuel, and lubrication running throughout the assembly.</p>
+          <button class="rev-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="width: 100%; justify-content: center;">
+            ↑ RETURN TO MISSION START
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+  <script>
+    // Scroll Progress Bar
+    const bar = document.getElementById('scroll-progress-bar');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = total > 0 ? (scrolled / total) * 100 : 0;
+      if (bar) bar.style.width = pct + '%';
+    });
+  </script>
+</body>
+</html>
